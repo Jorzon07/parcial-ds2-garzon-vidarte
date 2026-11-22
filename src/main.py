@@ -27,7 +27,7 @@ def main():
     lam = mesa.tasa_llegadas()
     metricas = mesa.metricas_mm1(lam)
     esperas_minutos = mesa.simular()
-    espera_simulada = sum(esperas_minutos) / len(esperas_minutos)
+    espera_simulada = mesa.espera_promedio()
     metricas_alta_demanda = mesa.metricas_mm1(LAMBDA_ALTA_DEMANDA)
 
     print(f"λ = {lam:.2f} tickets/hora | μ = {mesa.mu} tickets/hora")

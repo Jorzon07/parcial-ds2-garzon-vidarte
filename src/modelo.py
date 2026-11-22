@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib
+from pathlib import Path
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -37,7 +38,15 @@ class MesaDeAyuda:
             fin_atencion_anterior = inicio_atencion + ticket["minuto_atencion"]
         return esperas_minutos
 
-    def graficar(self, ruta_salida):
+    def espera_promedio(self):
+        return float(np.mean(self.simular()))
+
+    def graficar(self, ruta_salida=None):
+        if ruta_salida is None:
+            ruta_salida = Path(__file__).resolve().parents[1] / "graficas" / "resultado.png"
+        ruta_salida = Path(ruta_salida)
+        ruta_salida.parent.mkdir(parents=True, exist_ok=True)
+
         codigos = [ticket["codigo"] for ticket in self.tickets]
         esperas_minutos = self.simular()
         espera_promedio = np.mean(esperas_minutos)

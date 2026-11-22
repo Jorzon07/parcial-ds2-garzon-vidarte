@@ -1,5 +1,7 @@
 use("MatriculApp");
 
+db.dropDatabase();
+
 db.createCollection("ticket");
 db.createCollection("agente");
 db.createCollection("defecto");
